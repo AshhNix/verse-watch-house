@@ -1,11 +1,10 @@
 import Header from "./components/Header";
 import ProductList from "./components/ProductList";
+import Cart from "./components/Cart";
 import { CartProvider } from "./context/CartContext";
 import "./App.css";
 
-
 function App() {
-
   return (
     <CartProvider>
 
@@ -25,20 +24,17 @@ function App() {
                 ✦ EST. 2026 · VÉRSE HOROLOGY
               </span>
 
-
               <h1>
                 Time,
                 <br />
                 <span>refined.</span>
               </h1>
 
-
               <p>
                 Every second deserves something timeless.
                 Discover a considered collection of watches
                 designed for moments that matter.
               </p>
-
 
               <a
                 href="#products"
@@ -90,9 +86,14 @@ function App() {
           </section>
 
 
-          {/* WATCH COLLECTION */}
+          {/* PRODUCT COLLECTION */}
 
           <ProductList />
+
+
+          {/* SHOPPING CART */}
+
+          <Cart />
 
         </main>
 
@@ -101,6 +102,5 @@ function App() {
     </CartProvider>
   );
 }
-
 
 export default App;

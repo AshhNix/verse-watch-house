@@ -19,11 +19,10 @@ const ProductCard = ({ product }) => {
         </span>
 
         <span className="product-index">
-          0{product.id}
+          {String(product.id).padStart(2, "0")}
         </span>
 
       </div>
-
 
       <div className="product-content">
 
@@ -45,11 +44,9 @@ const ProductCard = ({ product }) => {
 
         </div>
 
-
         <p>
           {product.description}
         </p>
-
 
         <div className="product-bottom">
 
@@ -58,11 +55,20 @@ const ProductCard = ({ product }) => {
           </span>
 
           <button
+            type="button"
             className="add-button"
-            onClick={() => addToCart(product)}
+            onClick={() => {
+              console.log("ADDING:", product);
+              addToCart(product);
+            }}
           >
-            Add to Selection
-            <span>+</span>
+            <span className="add-button-text">
+              Add to Selection
+            </span>
+
+            <span className="add-button-icon">
+              +
+            </span>
           </button>
 
         </div>

@@ -1,15 +1,16 @@
 import { useCart } from "../context/CartContext";
 
 const CartItem = ({ item }) => {
-
   const {
     increaseQuantity,
     decreaseQuantity,
     removeFromCart,
   } = useCart();
 
+  const itemTotal = item.price * item.quantity;
+
   return (
-    <div className="cart-item">
+    <article className="cart-item">
 
       <img
         src={item.image}
@@ -17,9 +18,7 @@ const CartItem = ({ item }) => {
         className="cart-item-image"
       />
 
-
       <div className="cart-item-info">
-
         <span className="cart-item-brand">
           VÉRSE
         </span>
@@ -32,13 +31,10 @@ const CartItem = ({ item }) => {
           {item.category}
         </span>
 
-
         <div className="quantity-control">
-
           <button
-            onClick={() =>
-              decreaseQuantity(item.id)
-            }
+            type="button"
+            onClick={() => decreaseQuantity(item.id)}
           >
             −
           </button>
@@ -48,39 +44,31 @@ const CartItem = ({ item }) => {
           </strong>
 
           <button
-            onClick={() =>
-              increaseQuantity(item.id)
-            }
+            type="button"
+            onClick={() => increaseQuantity(item.id)}
           >
             +
           </button>
-
         </div>
-
       </div>
-
 
       <div className="cart-item-right">
 
         <strong>
-          ₹
-          {(
-            item.price * item.quantity
-          ).toLocaleString("en-IN")}
+          ₹{itemTotal.toLocaleString("en-IN")}
         </strong>
 
         <button
+          type="button"
           className="remove-button"
-          onClick={() =>
-            removeFromCart(item.id)
-          }
+          onClick={() => removeFromCart(item.id)}
         >
           Remove
         </button>
 
       </div>
 
-    </div>
+    </article>
   );
 };
 

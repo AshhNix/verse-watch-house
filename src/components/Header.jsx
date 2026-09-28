@@ -1,4 +1,8 @@
+import { useCart } from "../context/CartContext";
+
 const Header = () => {
+  const { totalItems } = useCart();
+
   return (
     <header className="site-header">
 
@@ -9,9 +13,15 @@ const Header = () => {
         </div>
 
         <div className="brand-text">
-          <h1>VÉRSE</h1>
 
-          <p>TIME, REFINED.</p>
+          <h1>
+            VÉRSE
+          </h1>
+
+          <p>
+            TIME, REFINED.
+          </p>
+
         </div>
 
       </div>
@@ -30,15 +40,20 @@ const Header = () => {
       </nav>
 
 
-      <div className="header-cart">
+      <a
+        href="#cart"
+        className="header-cart"
+      >
 
         <span className="cart-icon">
           ◇
         </span>
 
-        <span>00</span>
+        <span>
+          {String(totalItems).padStart(2, "0")}
+        </span>
 
-      </div>
+      </a>
 
     </header>
   );

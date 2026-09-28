@@ -4,9 +4,7 @@ import Coupon from "./Coupon";
 import OrderSummary from "./OrderSummary";
 
 const Cart = () => {
-
-  const { cart } = useCart();
-
+  const { cart, totalItems } = useCart();
 
   return (
     <section
@@ -23,20 +21,14 @@ const Cart = () => {
           </span>
 
           <h2>
-            Time worth keeping.
+            Curated for you.
           </h2>
 
         </div>
 
-
         <span className="cart-count">
-
-          {cart.length
-            .toString()
-            .padStart(2, "0")}{" "}
-          timepiece
-          {cart.length !== 1 ? "s" : ""}
-
+          {totalItems}{" "}
+          {totalItems === 1 ? "ITEM" : "ITEMS"}
         </span>
 
       </div>
@@ -55,12 +47,13 @@ const Cart = () => {
           </span>
 
           <h3>
-            Choose a timepiece.
+            Time waits for no one.
           </h3>
 
           <p>
-            Explore the VÉRSE collection and
-            select a watch that speaks to you.
+            Explore the VÉRSE collection above
+            and add a timepiece to begin your
+            selection.
           </p>
 
         </div>
@@ -72,14 +65,11 @@ const Cart = () => {
           <div className="cart-products">
 
             {cart.map((item) => (
-
               <CartItem
                 key={item.id}
                 item={item}
               />
-
             ))}
-
 
             <Coupon />
 

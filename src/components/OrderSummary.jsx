@@ -1,34 +1,30 @@
 import { useCart } from "../context/CartContext";
 
 const OrderSummary = () => {
-
   const {
     subtotal,
     discount,
     gst,
     grandTotal,
+    totalItems,
     coupon,
   } = useCart();
 
-
   return (
-    <div className="order-summary">
+    <aside className="order-summary">
 
       <div className="summary-header">
 
         <div>
-          <span>
-            YOUR SELECTION
-          </span>
+          <span>ORDER SUMMARY</span>
 
           <small>
-            VÉRSE / ORDER SUMMARY
+            {totalItems}{" "}
+            {totalItems === 1 ? "TIMEPIECE" : "TIMEPIECES"}
           </small>
         </div>
 
-        <span>
-          ◇
-        </span>
+        <span>◇</span>
 
       </div>
 
@@ -50,17 +46,11 @@ const OrderSummary = () => {
 
         <span>
           Discount
-          {coupon && ` · ${coupon.code}`}
+          {coupon && ` (${coupon.discount}%)`}
         </span>
 
         <strong>
-          − ₹
-          {discount.toLocaleString(
-            "en-IN",
-            {
-              maximumFractionDigits: 2,
-            }
-          )}
+          − ₹{discount.toLocaleString("en-IN")}
         </strong>
 
       </div>
@@ -69,17 +59,13 @@ const OrderSummary = () => {
       <div className="summary-row">
 
         <span>
-          GST · 18%
+          GST
         </span>
 
         <strong>
-          ₹
-          {gst.toLocaleString(
-            "en-IN",
-            {
-              maximumFractionDigits: 2,
-            }
-          )}
+          ₹{gst.toLocaleString("en-IN", {
+            maximumFractionDigits: 2,
+          })}
         </strong>
 
       </div>
@@ -97,37 +83,38 @@ const OrderSummary = () => {
           </span>
 
           <small>
-            Inclusive of GST
+            Inclusive of 18% GST
           </small>
 
         </div>
 
         <strong>
           ₹
-          {grandTotal.toLocaleString(
-            "en-IN",
-            {
-              maximumFractionDigits: 2,
-            }
-          )}
+          {grandTotal.toLocaleString("en-IN", {
+            maximumFractionDigits: 2,
+          })}
         </strong>
 
       </div>
 
 
-      <button className="checkout-button">
-
-        <span>
-          PROCEED TO CHECKOUT
-        </span>
+      <button
+        type="button"
+        className="checkout-button"
+        onClick={() =>
+          alert(
+            "Thank you for choosing VÉRSE. Checkout demonstration complete."
+          )
+        }
+      >
+        Proceed to Checkout
 
         <span>
           →
         </span>
-
       </button>
 
-    </div>
+    </aside>
   );
 };
 
